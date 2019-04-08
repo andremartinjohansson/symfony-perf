@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}THIS IS YOUR HOME!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        
+        <h2>Munge är en good boi</h2>
+        {% for thing in something %}
+            <div>{{ thing.id }} | {{ thing.name }}<div>
+        {% endfor %}
+
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
