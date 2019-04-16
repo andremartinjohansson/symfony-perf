@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Dummy;
+use App\Entity\Product;
 
 class Home extends AbstractController
 {
@@ -14,8 +14,9 @@ class Home extends AbstractController
     */
     public function page()
     {
+	set_time_limit(0);
         $dummy = $this->getDoctrine()
-        ->getRepository(Dummy::class)
+        ->getRepository(Product::class)
         ->findAll();
 
         return $this->render('home.html.twig', 
