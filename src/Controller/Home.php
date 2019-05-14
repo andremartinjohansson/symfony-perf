@@ -14,13 +14,33 @@ class Home extends AbstractController
     */
     public function page()
     {
+ 	/*$j = [];
+	for ($i = 0; $i <= 1000000000; $i++) {
+		$j[$i] = $i;
+	}*/
 	set_time_limit(0);
+	ini_set('memory_limit', '4096M');
         $dummy = $this->getDoctrine()
         ->getRepository(Product::class)
         ->findAll();
 
-        return $this->render('home.html.twig', 
+	$this->getDoctrine()
+	->getConnection()
+	->close();
+
+	gc_collect_cycles();
+
+	$response = new Response();
+
+	$response->setContent(json_encode(array(
+		'test' => $dummy
+	)));
+
+	$response->headers->set('Content-Type', 'application/json');
+
+       /* return $this->render('home.html.twig', 
             array('something' => $dummy)
-        );
+        );*/
+	return $response;
     }
 }
